@@ -1,6 +1,16 @@
 const form = document.getElementById("stickers-form");
 const incrementButton = document.getElementById("increment-button");
 const decrementButton = document.getElementById("decrement-button");
+const closeModalButton = document.getElementById("close-modal-button");
+const modal = document.querySelector(".success-modal-overlay");
+
+function closeModal() {
+  modal.classList.add("hidden-modal");
+}
+
+function showModal() {
+  modal.classList.remove("hidden-modal");
+}
 
 function updateCount(type) {
   const currentStickersCount = document.getElementById("stickers-count");
@@ -34,11 +44,14 @@ function validateForm() {
     !angularCheckbox.checked
   ) {
     typeError.classList.add("show");
+    return null;
   }
 
   if (!stickersQuantity || stickersQuantity <= 0) {
     quantityError.classList.add("show");
+    return null;
   }
+  showModal();
 }
 
 form.addEventListener("submit", function (e) {
@@ -54,4 +67,9 @@ incrementButton.addEventListener("click", function (e) {
 decrementButton.addEventListener("click", function (e) {
   e.preventDefault();
   updateCount("decrement");
+});
+
+closeModalButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  closeModal();
 });
