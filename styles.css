@@ -38,10 +38,34 @@ legend {
 
 fieldset {
   border: none;
-  padding: 16px 32px;
+  padding: 24px 32px;
 }
 
 fieldset legend {
+  margin-bottom: -14px;
+}
+
+fieldset legend b,
+.require-fields-info {
+  color: red;
+}
+
+.require-fields-info {
+  text-align: right;
+  margin-right: 32px;
+  font-size: 10px;
+  margin-top: -16px;
+  margin-bottom: 5px;
+}
+
+.error-text-sticker-type,
+.error-text-sticker-quantity {
+  font-size: 12px;
+  color: red;
+  display: none;
+}
+
+.show {
   display: block;
 }
 

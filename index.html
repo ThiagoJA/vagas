@@ -13,14 +13,14 @@
         <h2>Pacote de Stickers</h2>
       </header>
       <main>
-        <form>
+        <form id="stickers-form">
           <fieldset>
-            <legend>Quais stickers:</legend>
+            <legend>Quais stickers:<b>*</b></legend>
             <div class="checkbox">
               <input
                 type="checkbox"
                 id="react-checkbox"
-                name="sticker"
+                name="react-sticker"
                 value="React"
                 aria-label="react-label"
               />
@@ -30,7 +30,7 @@
               <input
                 type="checkbox"
                 id="vue-checkbox"
-                name="sticker"
+                name="vue-sticker"
                 value="Vue"
               />
               <label id="vue-label" for="vue-checkbox">Vue</label>
@@ -39,15 +39,16 @@
               <input
                 type="checkbox"
                 id="angular-checkbox"
-                name="sticker"
+                name="angular-sticker"
                 value="Angular"
               />
               <label id="angular-label" for="angular-checkbox">Angular</label>
             </div>
+            <p class="error-text-sticker-type">Selecione pelo menos um item!</p>
           </fieldset>
 
           <fieldset>
-            <legend>Quantos stickers de cada?</legend>
+            <legend>Quantos stickers de cada?<b>*</b></legend>
             <div class="counter">
               <button
                 type="button"
@@ -80,6 +81,7 @@
                 </svg>
               </button>
             </div>
+            <p class="error-text-sticker-quantity">Insira a quantidade!</p>
           </fieldset>
 
           <fieldset>
@@ -90,6 +92,7 @@
               aria-label="Observações"
             ></textarea>
           </fieldset>
+          <p class="require-fields-info">* Campos obrigatórios</p>
 
           <div class="form-footer">
             <input
@@ -114,6 +117,41 @@
 
         currentStickersCount.value = count;
       }
+
+      function validateForm() {
+        const reactCheckbox = document.getElementById("react-checkbox");
+        const vueCheckbox = document.getElementById("vue-checkbox");
+        const angularCheckbox = document.getElementById("angular-checkbox");
+        const stickersQuantity = parseInt(
+          document.getElementById("stickers-count").value
+        );
+        const typeError = document.querySelector(".error-text-sticker-type");
+        const quantityError = document.querySelector(
+          ".error-text-sticker-quantity"
+        );
+
+        typeError.classList.remove("show");
+        quantityError.classList.remove("show");
+
+        if (
+          !reactCheckbox.checked &&
+          !vueCheckbox.checked &&
+          !angularCheckbox.checked
+        ) {
+          typeError.classList.add("show");
+        }
+
+        if (!stickersQuantity || stickersQuantity <= 0) {
+          quantityError.classList.add("show");
+        }
+      }
+
+      const formulario = document.getElementById("stickers-form");
+
+      formulario.addEventListener("submit", function (e) {
+        e.preventDefault();
+        validateForm();
+      });
     </script>
   </body>
 </html>
