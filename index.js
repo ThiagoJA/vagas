@@ -1,3 +1,7 @@
+const form = document.getElementById("stickers-form");
+const incrementButton = document.getElementById("increment-button");
+const decrementButton = document.getElementById("decrement-button");
+
 function updateCount(type) {
   const currentStickersCount = document.getElementById("stickers-count");
   let count = parseInt(currentStickersCount.value);
@@ -37,9 +41,17 @@ function validateForm() {
   }
 }
 
-const formulario = document.getElementById("stickers-form");
-
-formulario.addEventListener("submit", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
   validateForm();
+});
+
+incrementButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  updateCount("increment");
+});
+
+decrementButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  updateCount("decrement");
 });
